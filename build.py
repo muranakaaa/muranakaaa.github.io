@@ -25,6 +25,12 @@ def block(title: str, body: str) -> str:
     return f"<h3>{html.escape(title)}</h3>\n{body}"
 
 
+def roles_line(text: str) -> str:
+    parts = [part for part in text.split("。") if part]
+    spans = "".join(f'<span class="role">{html.escape(part)}。</span>' for part in parts)
+    return f"<p>{spans}</p>"
+
+
 def lists(groups: list[dict]) -> str:
     return "\n".join(block(g["title"], f'<p>{"、".join(html.escape(x) for x in g["items"])}</p>') for g in groups)
 
@@ -108,7 +114,7 @@ def main() -> None:
     top_body = "\n".join(
         [
             intro_paragraph(site),
-            f'<p>{html.escape(site["roles"])}</p>',
+            roles_line(site["roles"]),
             links(site["links"]),
             lists(site["likes"]),
             block("好きな音楽", music(site)),
