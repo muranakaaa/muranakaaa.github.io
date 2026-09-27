@@ -68,11 +68,8 @@ def links(items: list[dict]) -> str:
     return f'<p>{" / ".join(link(x["label"], x["url"]) for x in items)}</p>'
 
 
-def intro_paragraph(site: dict) -> str:
-    text = html.escape(site["profile_intro"])
-    marker = "筑波大学国際総合学類卒業。"
-    text = text.replace(marker, marker + '<br class="pc-br">', 1)
-    return f"<p>{text}</p>"
+def intro_paragraphs(site: dict) -> str:
+    return "\n".join(f"<p>{html.escape(text)}</p>" for text in site["profile_intro"])
 
 
 def music(site: dict) -> str:
@@ -116,7 +113,7 @@ def main() -> None:
 
     top_body = "\n".join(
         [
-            intro_paragraph(site),
+            intro_paragraphs(site),
             roles_line(site["roles"]),
             links(site["links"]),
             lists(site["likes"]),
