@@ -73,6 +73,10 @@ def intro_paragraphs(site: dict) -> str:
     return "\n".join(f"<p>{html.escape(text)}</p>" for text in site["profile_intro"])
 
 
+def about_note(site: dict) -> str:
+    return f'<p class="note">{html.escape(site["about_note"])}</p>'
+
+
 def link_card(url: str, title: str, image: str, description: str = "") -> str:
     href = html.escape(url, quote=True)
     domain = html.escape(urlparse(url).netloc.removeprefix("www."))
@@ -129,6 +133,7 @@ def main() -> None:
 
     top_body = "\n".join(
         [
+            about_note(site),
             intro_paragraphs(site),
             roles_line(site["roles"]),
             links(site["links"]),
