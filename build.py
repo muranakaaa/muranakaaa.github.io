@@ -112,7 +112,6 @@ def main() -> None:
             links(site["links"]),
             lists(site["likes"]),
             block("好きな音楽", music(site)),
-            block("仕事", f'<p>{html.escape(site["job"])}</p>'),
             block("ほしいもの", f'<p>{link("Amazon のほしい物リスト", site["wishlist_url"])}</p>'),
             bullets(site["wanted"]["title"], site["wanted"]["items"]),
             block(POSTS_TITLE, f'<p>X の投稿から選んだ<a href="{POSTS_PAGE}">{len(posts)}件</a>。</p>'),
