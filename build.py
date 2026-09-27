@@ -69,6 +69,12 @@ def intro_paragraph(site: dict) -> str:
     return f'<p>{html.escape(site["profile_intro"])}</p>'
 
 
+def avatar(site: dict) -> str:
+    src = html.escape(site["profile_image"], quote=True)
+    alt = html.escape(site["profile_image_alt"], quote=True)
+    return f'<img class="avatar" src="{src}" width="120" height="120" alt="{alt}">'
+
+
 def music(site: dict) -> str:
     name = html.escape(site["playlist_name"])
     return (
@@ -120,7 +126,9 @@ def main() -> None:
             block("仕事", f'<p>{html.escape(site["job"])}</p>'),
             block("ほしいもの", f'<p>{link("Amazon のほしい物リスト", site["wishlist_url"])}</p>'),
             bullets(site["wanted"]["title"], site["wanted"]["items"]),
+            '<hr class="sep">',
             block(POSTS_TITLE, posts_list),
+            '<hr class="sep">',
         ]
     )
     index = render_page(
@@ -130,6 +138,7 @@ def main() -> None:
             "TITLE": site["title"],
             "PAGE": "",
             "H1": site["title"],
+            "AVATAR": avatar(site),
             "UPDATED": f'<p class="updated">最終更新 {updated}</p>',
             "BODY": top_body,
             "LIGHTBOX_DATA": lightbox_data(posts),
