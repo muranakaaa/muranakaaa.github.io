@@ -36,6 +36,9 @@ a { color: #666; text-decoration: underline; text-decoration-color: rgba(0, 0, 0
 a:hover { text-decoration-color: rgba(0, 0, 0, .5); }
 
 .page { margin: 30px; }
+.masthead { display: flex; align-items: center; gap: 16px; margin: 0 0 12px; }
+.avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; flex: none; border: 1px solid rgba(0, 0, 0, .1); }
+.masthead h1 { margin: 0; }
 h1 { font-size: 28px; font-weight: 700; line-height: 1.6; margin: 0 0 10px; }
 h3 { font-size: 16px; font-weight: 400; line-height: 1.6; margin: 0 0 4px; }
 h3::before { content: "# "; color: #ccc; margin-right: 4px; }
@@ -48,6 +51,8 @@ p { margin: 0 0 12px; }
 
 ul.items { margin: 0 0 12px; padding-left: 1.25em; }
 ul.items li { margin: 0; }
+
+hr.sep { border: 0; border-top: 1px solid rgba(0, 0, 0, .1); margin: 28px 0; }
 
 .posts { list-style: none; padding: 0; margin: 0; }
 .posts li { margin: 0 0 22px; }
@@ -73,8 +78,13 @@ iframe { display: block; width: 100%; max-width: 480px; height: 152px; border: 0
 </head>
 <body>
 <div class="page">
+<div class="masthead">
+{{AVATAR}}
+<div>
 {{UPDATED}}
 <h1>{{H1}}</h1>
+</div>
+</div>
 <main>
 {{BODY}}
 </main>
