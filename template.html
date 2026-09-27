@@ -26,29 +26,28 @@ body {
   font-family: Inter, "Noto Sans JP", sans-serif;
   font-size: 15px;
   line-height: 24px;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  line-break: strict;
+  word-break: normal;
+  word-break: auto-phrase;
+  text-wrap: pretty;
 }
 a { color: #666; text-decoration: underline; text-decoration-color: rgba(0, 0, 0, .2); text-underline-offset: 5px; }
 a:hover { text-decoration-color: rgba(0, 0, 0, .5); }
 
 .page { margin: 30px; }
-main { word-break: keep-all; }
 h1 { font-size: 28px; font-weight: 700; line-height: 1.6; margin: 0 0 10px; }
 h3 { font-size: 16px; font-weight: 400; line-height: 1.6; margin: 0 0 4px; }
 h3::before { content: "# "; color: #ccc; margin-right: 4px; }
 p { margin: 0 0 12px; }
 .updated { color: #999; font-size: 14px; margin: 0 0 4px; }
 
-.profile {
-  margin-top: 40px;
-  padding-top: 28px;
-  border-top: 1px solid rgba(0, 0, 0, .1);
-}
-
 @media (min-width: 720px) {
   .page { margin: 40px 56px; }
-  .profile { margin-top: 48px; padding-top: 32px; }
 }
+
+ul.items { margin: 0 0 12px; padding-left: 1.25em; }
+ul.items li { margin: 0; }
 
 .posts { list-style: none; padding: 0; margin: 0; }
 .posts li { margin: 0 0 22px; }
