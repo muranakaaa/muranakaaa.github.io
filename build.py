@@ -61,14 +61,6 @@ def render_post(post: dict, handle: str) -> str:
     )
 
 
-def link(label: str, url: str) -> str:
-    return f'<a href="{url}" target="_blank" rel="noopener">{html.escape(label)}</a>'
-
-
-def links(items: list[dict]) -> str:
-    return f'<p>{" / ".join(link(x["label"], x["url"]) for x in items)}</p>'
-
-
 def intro_paragraphs(site: dict) -> str:
     return "\n".join(f"<p>{html.escape(text)}</p>" for text in site["profile_intro"])
 
@@ -136,7 +128,6 @@ def main() -> None:
             about_note(site),
             intro_paragraphs(site),
             roles_line(site["roles"]),
-            links(site["links"]),
             lists(site["likes"]),
             block("好きな音楽", music(site)),
             block("ほしいもの", link_card(site["wishlist_url"], site["wishlist_title"], site["wishlist_image"])),

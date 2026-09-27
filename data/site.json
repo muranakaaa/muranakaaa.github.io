@@ -7,23 +7,15 @@
   "handle": "ayatakaa_chan",
   "since": "2026-09-23",
   "roles": "ソフトウェアエンジニア。三重県尾鷲市案内人。事業承継の手伝い人。ミルズ大阪店公式サポーター。",
-  "links": [
-    {
-      "label": "X",
-      "url": "https://x.com/ayatakaa_chan"
-    },
-    {
-      "label": "note",
-      "url": "https://note.com/mie_ayatakaa"
-    },
-    {
-      "label": "Instagram",
-      "url": "https://www.instagram.com/ayatakaaa_chan/"
-    }
-  ],
   "likes": [
     {
-      "title": "好きなもの",
+      "title": "好きなもの（抽象）",
+      "items": [
+        "旅を通して物事の移り変わりを感じること"
+      ]
+    },
+    {
+      "title": "好きなもの（具体）",
       "items": [
         "港町",
         "喫茶店",
