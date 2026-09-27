@@ -42,6 +42,7 @@ h3::before { content: "# "; color: #ccc; margin-right: 4px; }
 p { margin: 0 0 12px; }
 .role { display: inline-block; white-space: nowrap; }
 .updated { color: #999; font-size: 14px; margin: 0 0 4px; }
+.note { color: #999; font-size: 14px; }
 
 @media (min-width: 720px) {
   .page { margin: 40px 56px; }
@@ -50,7 +51,25 @@ p { margin: 0 0 12px; }
 ul.items { margin: 0 0 12px; padding-left: 1.25em; }
 ul.items li { margin: 0; }
 
-a.url { overflow-wrap: anywhere; }
+a.card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 0 12px;
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, .15);
+  color: #333;
+  text-decoration: none;
+}
+a.card:hover { text-decoration: none; border-color: rgba(0, 0, 0, .4); }
+a.card img { width: 64px; height: 64px; object-fit: contain; flex: none; background: #f5f5f5; }
+.card-text { min-width: 0; }
+.card-title, .card-desc, .card-domain { display: block; line-height: 1.4; }
+.card-title { font-weight: 600; }
+.card-desc { margin-top: 2px; color: #666; font-size: 13px; }
+.card-domain { margin-top: 2px; color: #999; font-size: 12px; }
 
 .posts { list-style: none; padding: 0; margin: 0; }
 .posts li { margin: 0 0 22px; }
@@ -77,6 +96,7 @@ a.url { overflow-wrap: anywhere; }
 <p class="updated">最終更新 2026.09.25</p>
 <h1>about</h1>
 <main>
+<p class="note">村中のことを知ってほしいときに『ここを見て』と言える場所がほしくて作りました。</p>
 <p>村中（むらなか）。1999年5月16日生まれ。三重県鈴鹿市出身。筑波大学国際総合学類卒業。</p>
 <p>旅の魅力に気づき、旅に狂った大学時代でした。</p>
 <p>卒業後は名古屋、東京を経て、2025年2月からは大阪に移住し、関西地域を中心に楽しんでいます。</p>
@@ -89,9 +109,9 @@ a.url { overflow-wrap: anywhere; }
 <h3>好きな鉄道路線</h3>
 <p>近鉄大阪線、紀勢本線、山陽本線、山陰本線、肥薩おれんじ鉄道</p>
 <h3>好きな音楽</h3>
-<p>ファンクとディスコが好きです。</p><p><a class="url" href="https://open.spotify.com/playlist/2XhVxvRuQOpO572VeJgils" target="_blank" rel="noopener">https://open.spotify.com/playlist/2XhVxvRuQOpO572VeJgils</a></p>
+<p>ファンクとディスコが好きです。</p><a class="card" href="https://open.spotify.com/playlist/2XhVxvRuQOpO572VeJgils" target="_blank" rel="noopener"><img src="images/spotify-playlist.jpg" alt=""><span class="card-text"><span class="card-title">私を構成する42枚（洋楽）</span><span class="card-desc">Playlist · ayatakaa_chan · 42 items</span><span class="card-domain">open.spotify.com</span></span></a>
 <h3>ほしいもの</h3>
-<p><a href="https://www.amazon.jp/hz/wishlist/ls/2XVETO9L9BGLQ" target="_blank" rel="noopener">Amazon のほしい物リスト</a></p>
+<a class="card" href="https://www.amazon.jp/hz/wishlist/ls/2XVETO9L9BGLQ" target="_blank" rel="noopener"><img src="images/amazon-logo.png" alt=""><span class="card-text"><span class="card-title">Amazon ほしい物リスト</span><span class="card-domain">amazon.jp</span></span></a>
 <h3>考えてること</h3>
 <ul class="items"><li>後継者不足で困っている・事業承継をしたい人</li><li>尾鷲に行ってみたい人</li><li>大阪で旅の話をしたい人</li><li>プノンペン</li><li>那智勝浦</li><li>京丹後鉄道</li></ul>
 <h3>好きな自分のポスト</h3>
