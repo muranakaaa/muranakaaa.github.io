@@ -5,6 +5,7 @@ import html
 import json
 import re
 from pathlib import Path
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).parent
 DATA = ROOT / "data"
@@ -72,11 +73,26 @@ def intro_paragraphs(site: dict) -> str:
     return "\n".join(f"<p>{html.escape(text)}</p>" for text in site["profile_intro"])
 
 
+def link_card(url: str, title: str, image: str, description: str = "") -> str:
+    href = html.escape(url, quote=True)
+    domain = html.escape(urlparse(url).netloc.removeprefix("www."))
+    desc = f'<span class="card-desc">{html.escape(description)}</span>' if description else ""
+    return (
+        f'<a class="card" href="{href}" target="_blank" rel="noopener">'
+        f'<img src="{html.escape(image, quote=True)}" alt="">'
+        f'<span class="card-text">'
+        f'<span class="card-title">{html.escape(title)}</span>'
+        f"{desc}"
+        f'<span class="card-domain">{domain}</span>'
+        f"</span></a>"
+    )
+
+
 def music(site: dict) -> str:
-    url = html.escape(f'https://open.spotify.com/playlist/{site["playlist_id"]}', quote=True)
+    url = f'https://open.spotify.com/playlist/{site["playlist_id"]}'
     return (
         f'<p>{html.escape(site["music_note"])}</p>'
-        f'<p><a class="url" href="{url}" target="_blank" rel="noopener">{url}</a></p>'
+        + link_card(url, site["playlist_name"], site["playlist_image"], site["playlist_description"])
     )
 
 
@@ -118,7 +134,7 @@ def main() -> None:
             links(site["links"]),
             lists(site["likes"]),
             block("好きな音楽", music(site)),
-            block("ほしいもの", f'<p>{link("Amazon のほしい物リスト", site["wishlist_url"])}</p>'),
+            block("ほしいもの", link_card(site["wishlist_url"], site["wishlist_title"], site["wishlist_image"])),
             bullets(site["wanted"]["title"], site["wanted"]["items"]),
             block(POSTS_TITLE, f'<p>X の投稿から選んだ<a href="{POSTS_PAGE}">{len(posts)}件</a>。</p>'),
         ]
