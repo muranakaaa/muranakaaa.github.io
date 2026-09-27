@@ -1,4 +1,4 @@
-"""data/ と images/ から index.html を生成する。"""
+"""data/ と images/ から index.html と posts.html を生成する。"""
 
 import datetime
 import html
@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent
 DATA = ROOT / "data"
+POSTS_PAGE = "posts.html"
 POSTS_TITLE = "好きな自分のポスト"
 
 
@@ -70,11 +71,10 @@ def intro_paragraph(site: dict) -> str:
 
 
 def music(site: dict) -> str:
-    name = html.escape(site["playlist_name"])
     url = html.escape(f'https://open.spotify.com/playlist/{site["playlist_id"]}', quote=True)
     return (
         f'<p>{html.escape(site["music_note"])}</p>'
-        f'<p><a href="{url}" target="_blank" rel="noopener">{name}</a></p>'
+        f'<p><a class="url" href="{url}" target="_blank" rel="noopener">{url}</a></p>'
     )
 
 
@@ -109,7 +109,6 @@ def main() -> None:
     template = (ROOT / "template.html").read_text(encoding="utf-8")
     updated = datetime.date.today().strftime("%Y.%m.%d")
 
-    posts_list = f'<ul class="posts">{"".join(render_post(p, site["handle"]) for p in posts)}</ul>'
     top_body = "\n".join(
         [
             intro_paragraph(site),
@@ -120,9 +119,7 @@ def main() -> None:
             block("仕事", f'<p>{html.escape(site["job"])}</p>'),
             block("ほしいもの", f'<p>{link("Amazon のほしい物リスト", site["wishlist_url"])}</p>'),
             bullets(site["wanted"]["title"], site["wanted"]["items"]),
-            '<hr class="sep">',
-            block(POSTS_TITLE, posts_list),
-            '<hr class="sep">',
+            block(POSTS_TITLE, f'<p>X の投稿から選んだ<a href="{POSTS_PAGE}">{len(posts)}件</a>。</p>'),
         ]
     )
     index = render_page(
@@ -134,11 +131,30 @@ def main() -> None:
             "H1": site["title"],
             "UPDATED": f'<p class="updated">最終更新 {updated}</p>',
             "BODY": top_body,
-            "LIGHTBOX_DATA": lightbox_data(posts),
+            "LIGHTBOX_DATA": "{}",
         },
     )
     (ROOT / "index.html").write_text(index, encoding="utf-8")
-    print(f"index.html: {len(site['likes'])} lists / {len(posts)} posts / 最終更新 {updated}")
+
+    posts_body = (
+        f"<p>X の投稿から選んだ{len(posts)}件。日付を押すと元の投稿が開き、写真を押すと大きく表示します。</p>"
+        f'<p><a href="./">{html.escape(site["title"])} に戻る</a></p>'
+        f'<ul class="posts">{"".join(render_post(p, site["handle"]) for p in posts)}</ul>'
+    )
+    posts_page = render_page(
+        site,
+        template,
+        {
+            "TITLE": POSTS_TITLE,
+            "PAGE": POSTS_PAGE,
+            "H1": POSTS_TITLE,
+            "UPDATED": "",
+            "BODY": posts_body,
+            "LIGHTBOX_DATA": lightbox_data(posts),
+        },
+    )
+    (ROOT / POSTS_PAGE).write_text(posts_page, encoding="utf-8")
+    print(f"index.html: {len(site['likes'])} lists / {POSTS_PAGE}: {len(posts)} posts / 最終更新 {updated}")
 
 
 if __name__ == "__main__":

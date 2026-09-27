@@ -10,7 +10,7 @@ https://muranakaaa.github.io/
 - `data/posts.json` — Xの投稿（本文・日付・写真のファイル名とサイズ）
 - `images/` — 投稿の写真。`<投稿ID>-<連番>.jpg`
 - `template.html` — 両ページ共通の雛形。CSS と写真の全画面表示の JS もここ
-- `build.py` — `data/` と `template.html` から `index.html`（about。好きな自分のポストもこのページの末尾）を生成する。最終更新日は実行日
+- `build.py` — `data/` と `template.html` から `index.html`（about）と `posts.html`（好きな自分のポスト）を生成する。最終更新日は実行日
 
 ## 更新する
 
