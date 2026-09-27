@@ -69,7 +69,10 @@ def links(items: list[dict]) -> str:
 
 
 def intro_paragraph(site: dict) -> str:
-    return f'<p>{html.escape(site["profile_intro"])}</p>'
+    text = html.escape(site["profile_intro"])
+    marker = "筑波大学国際総合学類卒業。"
+    text = text.replace(marker, marker + '<br class="pc-br">', 1)
+    return f"<p>{text}</p>"
 
 
 def music(site: dict) -> str:
