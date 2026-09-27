@@ -36,9 +36,6 @@ a { color: #666; text-decoration: underline; text-decoration-color: rgba(0, 0, 0
 a:hover { text-decoration-color: rgba(0, 0, 0, .5); }
 
 .page { margin: 30px; }
-.masthead { display: flex; align-items: center; gap: 16px; margin: 0 0 12px; }
-.avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; flex: none; border: 1px solid rgba(0, 0, 0, .1); }
-.masthead h1 { margin: 0; }
 h1 { font-size: 28px; font-weight: 700; line-height: 1.6; margin: 0 0 10px; }
 h3 { font-size: 16px; font-weight: 400; line-height: 1.6; margin: 0 0 4px; }
 h3::before { content: "# "; color: #ccc; margin-right: 4px; }
@@ -62,8 +59,6 @@ hr.sep { border: 0; border-top: 1px solid rgba(0, 0, 0, .1); margin: 28px 0; }
 .shot { padding: 0; margin: 0; border: 0; background: none; cursor: zoom-in; line-height: 0; }
 .shot img { width: 72px; height: 72px; object-fit: cover; display: block; border: 1px solid rgba(0, 0, 0, .1); }
 
-iframe { display: block; width: 100%; max-width: 480px; height: 152px; border: 0; margin: 0 0 12px; }
-
 .lightbox { position: fixed; inset: 0; z-index: 50; display: none; align-items: center; justify-content: center; background: rgba(20, 20, 20, .95); touch-action: pan-y; }
 .lightbox[open] { display: flex; }
 .lightbox img { max-width: 100vw; max-height: 100dvh; object-fit: contain; }
@@ -78,13 +73,8 @@ iframe { display: block; width: 100%; max-width: 480px; height: 152px; border: 0
 </head>
 <body>
 <div class="page">
-<div class="masthead">
-<img class="avatar" src="images/profile.jpg" width="120" height="120" alt="プロフィール画像">
-<div>
 <p class="updated">最終更新 2026.09.25</p>
 <h1>about</h1>
-</div>
-</div>
 <main>
 <p>村中（むらなか）。1999年5月16日生まれ。三重県鈴鹿市出身。筑波大学国際総合学類卒業。旅の魅力に気づき、旅に狂った大学時代でした。卒業後は名古屋、東京を経て、2025年2月からは大阪に移住し、関西地域を中心に楽しんでいます。</p>
 <p>2025年5月〜 事業承継 地域コーディネーター 関西拠点<br>2026年9月〜 ミルズ大阪店公式サポーター<br>三重県尾鷲市案内人</p>
@@ -96,7 +86,7 @@ iframe { display: block; width: 100%; max-width: 480px; height: 152px; border: 0
 <h3>好きな鉄道路線</h3>
 <p>近鉄大阪線、紀勢本線、山陽本線、山陰本線、肥薩おれんじ鉄道</p>
 <h3>好きな音楽</h3>
-<p>ファンクとディスコが好きです。</p><iframe src="https://open.spotify.com/embed/playlist/2XhVxvRuQOpO572VeJgils?theme=0" title="Spotify: 私を構成する42枚（洋楽）" loading="lazy" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<p>ファンクとディスコが好きです。</p><p><a href="https://open.spotify.com/playlist/2XhVxvRuQOpO572VeJgils" target="_blank" rel="noopener">私を構成する42枚（洋楽）</a></p>
 <h3>仕事</h3>
 <p>ソフトウェアエンジニア。クラウドインフラ（AWS、Cloudflare）とバックエンド（Go）。関西の勉強会によくいます。</p>
 <h3>ほしいもの</h3>
