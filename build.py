@@ -69,18 +69,12 @@ def intro_paragraph(site: dict) -> str:
     return f'<p>{html.escape(site["profile_intro"])}</p>'
 
 
-def avatar(site: dict) -> str:
-    src = html.escape(site["profile_image"], quote=True)
-    alt = html.escape(site["profile_image_alt"], quote=True)
-    return f'<img class="avatar" src="{src}" width="120" height="120" alt="{alt}">'
-
-
 def music(site: dict) -> str:
     name = html.escape(site["playlist_name"])
+    url = html.escape(f'https://open.spotify.com/playlist/{site["playlist_id"]}', quote=True)
     return (
         f'<p>{html.escape(site["music_note"])}</p>'
-        f'<iframe src="https://open.spotify.com/embed/playlist/{site["playlist_id"]}?theme=0" title="Spotify: {name}" loading="lazy" '
-        'allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>'
+        f'<p><a href="{url}" target="_blank" rel="noopener">{name}</a></p>'
     )
 
 
@@ -138,7 +132,6 @@ def main() -> None:
             "TITLE": site["title"],
             "PAGE": "",
             "H1": site["title"],
-            "AVATAR": avatar(site),
             "UPDATED": f'<p class="updated">最終更新 {updated}</p>',
             "BODY": top_body,
             "LIGHTBOX_DATA": lightbox_data(posts),
