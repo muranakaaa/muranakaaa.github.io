@@ -127,6 +127,7 @@ def main() -> None:
         [
             about_note(site),
             intro_paragraphs(site),
+            f'<p>{html.escape(site["roles_lead"])}</p>',
             roles_line(site["roles"]),
             lists(site["likes"]),
             block("好きな音楽", music(site)),
