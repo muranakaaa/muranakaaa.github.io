@@ -27,8 +27,8 @@ def block(title: str, body: str) -> str:
 
 
 def roles_line(text: str) -> str:
-    parts = [part for part in text.split("。") if part]
-    spans = "".join(f'<span class="role">{html.escape(part)}。</span>' for part in parts)
+    parts = [part for part in re.findall(r"[^。、]+[。、]?", text) if part]
+    spans = "".join(f'<span class="role">{html.escape(part)}</span>' for part in parts)
     return f"<p>{spans}</p>"
 
 
