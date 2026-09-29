@@ -62,7 +62,7 @@ def render_post(post: dict, handle: str) -> str:
 
 
 def intro_paragraphs(site: dict) -> str:
-    return "\n".join(f"<p>{html.escape(text)}</p>" for text in site["profile_intro"])
+    return "\n".join(f'<p class="tight">{html.escape(text)}</p>' for text in site["profile_intro"])
 
 
 def about_note(site: dict) -> str:
@@ -127,7 +127,7 @@ def main() -> None:
         [
             about_note(site),
             intro_paragraphs(site),
-            f'<p>{html.escape(site["roles_lead"])}</p>',
+            f'<p class="tight">{html.escape(site["roles_lead"])}</p>',
             roles_line(site["roles"]),
             lists(site["likes"]),
             block("好きな音楽", music(site)),
