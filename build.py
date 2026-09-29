@@ -26,10 +26,11 @@ def block(title: str, body: str) -> str:
     return f"<h3>{html.escape(title)}</h3>\n{body}"
 
 
-def roles_line(text: str) -> str:
-    parts = [part for part in re.findall(r"[^。、]+[。、]?", text) if part]
+def roles_line(text: str, *, tight: bool = False) -> str:
+    parts = [part for part in re.findall(r"[^。、（）／は]+[。、（）／は]?", text) if part]
     spans = "".join(f'<span class="role">{html.escape(part)}</span>' for part in parts)
-    return f"<p>{spans}</p>"
+    cls = ' class="tight"' if tight else ""
+    return f"<p{cls}>{spans}</p>"
 
 
 def lists(groups: list[dict]) -> str:
@@ -127,7 +128,7 @@ def main() -> None:
         [
             about_note(site),
             intro_paragraphs(site),
-            f'<p class="tight">{html.escape(site["roles_lead"])}</p>',
+            roles_line(site["roles_lead"], tight=True),
             roles_line(site["roles"]),
             lists(site["likes"]),
             block("好きな音楽", music(site)),
