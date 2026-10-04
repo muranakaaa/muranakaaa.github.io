@@ -57,10 +57,7 @@ def render_post(post: dict, handle: str) -> str:
 
 
 def post_list(posts: list[dict], handle: str) -> str:
-    return (
-        f"<p>X の投稿から選んだ{len(posts)}件。日付を押すと元の投稿が開き、写真を押すと大きく表示します。</p>"
-        f'<ul class="posts">{"".join(render_post(p, handle) for p in posts)}</ul>'
-    )
+    return f'<ul class="posts">{"".join(render_post(p, handle) for p in posts)}</ul>'
 
 
 def intro_paragraphs(site: dict) -> str:
