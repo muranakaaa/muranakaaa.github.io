@@ -37,11 +37,6 @@ def lists(groups: list[dict]) -> str:
     return "\n".join(block(g["title"], f'<p>{"、".join(html.escape(x) for x in g["items"])}</p>') for g in groups)
 
 
-def bullets(title: str, items: list[str]) -> str:
-    rows = "".join(f"<li>{html.escape(item)}</li>" for item in items)
-    return block(title, f'<ul class="items">{rows}</ul>')
-
-
 def render_thumbs(post: dict) -> str:
     if not post["media"]:
         return ""
@@ -133,7 +128,6 @@ def main() -> None:
             lists(site["likes"]),
             block("好きな音楽", music(site)),
             block("ほしいもの", link_card(site["wishlist_url"], site["wishlist_title"], site["wishlist_image"])),
-            bullets(site["wanted"]["title"], site["wanted"]["items"]),
             block(POSTS_TITLE, f'<p>X の投稿から選んだ<a href="{POSTS_PAGE}">{len(posts)}件</a>。</p>'),
         ]
     )
