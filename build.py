@@ -25,11 +25,10 @@ def block(title: str, body: str) -> str:
     return f"<h2>{html.escape(title)}</h2>\n{body}"
 
 
-def roles_line(text: str, *, tight: bool = False) -> str:
+def roles_line(text: str) -> str:
     parts = [part for part in re.findall(r"[^。、（）／は]+[。、（）／は]?", text) if part]
     spans = "".join(f'<span class="role">{html.escape(part)}</span>' for part in parts)
-    cls = ' class="tight"' if tight else ""
-    return f"<p{cls}>{spans}</p>"
+    return f"<p>{spans}</p>"
 
 
 def lists(groups: list[dict]) -> str:
@@ -57,10 +56,7 @@ def render_post(post: dict, handle: str) -> str:
 
 
 def post_list(posts: list[dict], handle: str) -> str:
-    return (
-        f"<p>X の投稿から選んだ{len(posts)}件。日付を押すと元の投稿が開き、写真を押すと大きく表示します。</p>"
-        f'<ul class="posts">{"".join(render_post(p, handle) for p in posts)}</ul>'
-    )
+    return f'<ul class="posts">{"".join(render_post(p, handle) for p in posts)}</ul>'
 
 
 def intro_paragraphs(site: dict) -> str:
@@ -129,8 +125,7 @@ def main() -> None:
         [
             about_note(site),
             intro_paragraphs(site),
-            roles_line(site["roles_lead"], tight=True),
-            roles_line(site["roles_tail"]),
+            roles_line(site["roles"]),
             lists(site["likes"]),
             block("好きな音楽", music(site)),
             block("ほしいもの", link_card(site["wishlist_url"], site["wishlist_title"], site["wishlist_image"])),
