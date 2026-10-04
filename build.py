@@ -22,7 +22,7 @@ def format_date(iso: str) -> str:
 
 
 def block(title: str, body: str) -> str:
-    return f"<h3>{html.escape(title)}</h3>\n{body}"
+    return f"<h2>{html.escape(title)}</h2>\n{body}"
 
 
 def roles_line(text: str, *, tight: bool = False) -> str:
@@ -51,7 +51,7 @@ def render_post(post: dict, handle: str) -> str:
     url = f"https://x.com/{handle}/status/{post['id']}"
     text = html.escape(post["text"]).replace("\n", "<br>")
     return (
-        f'<li><h4><a href="{url}" target="_blank" rel="noopener">{format_date(post["date"])}</a></h4>'
+        f'<li><h3><a href="{url}" target="_blank" rel="noopener">{format_date(post["date"])}</a></h3>'
         f"<p>{text}</p>{render_thumbs(post)}</li>"
     )
 
