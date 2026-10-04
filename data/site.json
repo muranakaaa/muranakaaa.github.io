@@ -56,12 +56,6 @@
   "zine_note": "印刷して配っています。",
   "zines": [
     {
-      "title": "歌島",
-      "url": "https://muranakaaa.github.io/zine/kamishima/kamishima-a5.pdf",
-      "image": "images/zine-kamishima.jpg",
-      "description": "三島由紀夫『潮騒』の舞台、三重県鳥羽市神島。読書の記録と2021年夏の写真。"
-    },
-    {
       "title": "海の見える車窓",
       "url": "https://muranakaaa.github.io/zine/shasou/shasou-a5.pdf",
       "image": "images/zine-shasou.jpg",
