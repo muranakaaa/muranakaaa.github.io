@@ -11,7 +11,7 @@ https://muranakaaa.github.io/
 - `images/` — 投稿の写真。`<投稿ID>-<連番>.jpg`
 - `template.html` — ページの雛形。CSS と写真の全画面表示の JS もここ
 - `build.py` — `data/` と `template.html` から `index.html` を生成する。好きな自分のポストもこのページに並べる。最終更新日は実行日
-- `zine/<名前>/` — zine。`index.html` が Web 版で、印刷用の PDF も同じ場所に置く。`build.py` の対象外
+- `zine/<名前>/` — zine の PDF（A5 の閲覧用と A4 中綴じの印刷用）。`index.html` は X のリンクカード用で、開くと A5 の PDF へ移る。`build.py` の対象外
 
 ## 更新する
 
