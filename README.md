@@ -9,8 +9,8 @@ https://muranakaaa.github.io/
 - `data/site.json` — タイトル・名前・冒頭の文・経歴・肩書き・SNS リンク・仕事・「好きな○○」の各リスト・音楽の一文とプレイリスト・ほしい物リスト
 - `data/posts.json` — Xの投稿（本文・日付・写真のファイル名とサイズ）
 - `images/` — 投稿の写真。`<投稿ID>-<連番>.jpg`
-- `template.html` — 両ページ共通の雛形。CSS と写真の全画面表示の JS もここ
-- `build.py` — `data/` と `template.html` から `index.html`（about）と `posts.html`（好きな自分のポスト）を生成する。最終更新日は実行日
+- `template.html` — ページの雛形。CSS と写真の全画面表示の JS もここ
+- `build.py` — `data/` と `template.html` から `index.html` を生成する。好きな自分のポストもこのページに並べる。最終更新日は実行日
 
 ## 更新する
 
