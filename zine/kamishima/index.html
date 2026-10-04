@@ -17,132 +17,86 @@
 <style>
 :root {
   color-scheme: light;
-  --paper: #f4efe4;
   --ink: #26221e;
   --ink-muted: #6d655b;
   --sea: #1d4a68;
   --rule: #cfc5b3;
+  --desk: #e6dfd1;
   --page-w: 148mm;
   --page-h: 210mm;
 }
 * { box-sizing: border-box; }
-html { background: #e6dfd1; }
+html, body { background: var(--desk); }
 body {
   margin: 0;
   color: var(--ink);
-  background: #e6dfd1;
   font-family: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-feature-settings: "palt" 0;
   line-break: strict;
 }
 img { display: block; width: 100%; height: 100%; object-fit: cover; }
 p { margin: 0; }
 
-/* ───────── 画面: 1ページずつ縦に流す ───────── */
-.zine { padding: 24px 16px 64px; display: grid; gap: 24px; justify-items: center; }
+/* A5 縦・右綴じ。画面でも印刷と同じ寸法で組み、画面幅に合わせて縮める */
+@page { size: 148mm 210mm; margin: 0; }
+.zine { display: grid; gap: 24px; justify-content: center; padding-block: 24px 16px; }
 .page {
   position: relative;
-  width: 100%;
-  max-width: 560px;
-  background: var(--paper);
-  box-shadow: 0 1px 2px #0000001a, 0 8px 24px #0000000f;
+  width: var(--page-w); height: var(--page-h);
+  background: #fff;
   overflow: hidden;
+  box-shadow: 0 1px 2px #0000001a, 0 8px 24px #0000000f;
 }
-.folio {
-  position: absolute; bottom: 14px; left: 0; right: 0;
-  text-align: center; font-size: 11px; color: var(--ink-muted); letter-spacing: .1em;
-}
-.vert { padding: 40px 28px 56px; font-size: 16px; line-height: 2; }
+.folio { position: absolute; bottom: 7mm; left: 0; right: 0; text-align: center; font-size: 7pt; color: var(--ink-muted); letter-spacing: .1em; }
+
+.vert { writing-mode: vertical-rl; height: 100%; padding: 18mm 14mm 20mm; font-size: 9.5pt; line-height: 1.95; }
 .vert p + p { margin-top: 1em; }
 .vert p { text-indent: 1em; }
-.photo-full { aspect-ratio: 3 / 4; }
-.photo-full img { object-position: var(--pos, center); }
+.tcy { text-combine-upright: all; }
 
-.cover .cover-photo { aspect-ratio: 4 / 3; }
-.cover .cover-text { padding: 28px 28px 40px; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
-.cover h1 { margin: 0; font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: .12em; }
-.cover .ruby { font-size: 12px; letter-spacing: .5em; color: var(--ink-muted); margin-top: 8px; }
-.cover .meta { text-align: right; font-size: 12px; line-height: 1.9; color: var(--ink-muted); }
-.cover .meta strong { display: block; font-weight: 600; font-size: 14px; color: var(--ink); }
+.page.photo-full img { object-position: var(--pos, center); }
 
-.lead .lead-photo { aspect-ratio: 4 / 3; }
+.cover .cover-photo { height: 132mm; }
+.cover .cover-text { height: 78mm; padding: 12mm 12mm 14mm; display: flex; justify-content: space-between; align-items: flex-end; gap: 4mm; }
+.cover h1 { margin: 0; font-weight: 800; font-size: 46pt; line-height: 1; letter-spacing: .12em; }
+.cover .ruby { font-size: 8pt; letter-spacing: .5em; color: var(--ink-muted); margin-top: 2mm; }
+.cover .meta { text-align: right; font-size: 8pt; line-height: 1.9; color: var(--ink-muted); }
+.cover .meta strong { display: block; font-weight: 600; font-size: 10pt; color: var(--ink); }
+
+.lead { display: flex; flex-direction: column; }
+.lead .lead-photo { height: 96mm; flex: none; }
+.lead .vert { flex: 1; height: auto; min-height: 0; padding: 12mm 14mm 16mm; }
 .lead .vert p { text-indent: 0; }
 
-.quote .num { font-size: 13px; letter-spacing: .2em; color: var(--sea); margin-bottom: 1.2em; }
-.quote blockquote { margin: 0; font-size: 17px; line-height: 2.05; }
-.tcy { text-combine-upright: all; }
-.quote cite { display: block; text-orientation: upright; margin-top: 1.5em; font-style: normal; font-size: 12px; color: var(--ink-muted); letter-spacing: .05em; }
+.quote .vert { padding: 22mm 18mm 24mm; }
+.quote .num { font-size: 8pt; letter-spacing: .2em; color: var(--sea); margin-bottom: 1.2em; }
+.quote blockquote { margin: 0; font-size: 10pt; line-height: 2.05; }
+.quote cite { display: block; text-orientation: upright; margin-top: 1.5em; font-style: normal; font-size: 7.5pt; color: var(--ink-muted); letter-spacing: .05em; }
 
-.album h2, .access h2 { margin: 0 0 16px; font-weight: 600; font-size: 15px; letter-spacing: .2em; }
-.album { padding: 32px 24px 48px; }
-.album .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-.album .grid .wide { grid-column: span 3; aspect-ratio: 4 / 3; }
-.album .grid div { aspect-ratio: 1; }
+.album h2, .access h2 { margin: 0 0 5mm; font-weight: 600; font-size: 9pt; letter-spacing: .2em; }
+.album { padding: 14mm 12mm 16mm; }
+.album .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2mm; }
+.album .grid div { height: 42mm; }
+.album .grid .wide { grid-column: span 3; height: 100mm; }
 
-.access { padding: 32px 24px 48px; display: flex; flex-direction: column; gap: 20px; }
-.access dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 13px; line-height: 1.7; }
+.access { padding: 14mm 12mm 16mm; display: flex; flex-direction: column; gap: 6mm; }
+.access dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 1.6mm 5mm; font-size: 8pt; line-height: 1.7; }
 .access dt { color: var(--sea); font-weight: 600; white-space: nowrap; }
 .access dd { margin: 0; }
-.access .note { font-size: 11px; color: var(--ink-muted); line-height: 1.7; }
-.access .back-photo { aspect-ratio: 4 / 3; }
-.colophon { border-top: 1px solid var(--rule); padding-top: 14px; font-size: 12px; line-height: 1.9; display: flex; justify-content: space-between; align-items: flex-end; }
-.colophon .title { font-weight: 800; font-size: 22px; letter-spacing: .12em; line-height: 1; }
+.access .note { font-size: 6.5pt; color: var(--ink-muted); line-height: 1.7; }
+.access .back-photo { height: 62mm; }
+.colophon { margin-top: auto; border-top: 1px solid var(--rule); padding-top: 4mm; font-size: 7.5pt; line-height: 1.9; display: flex; justify-content: space-between; align-items: flex-end; }
+.colophon .title { font-weight: 800; font-size: 15pt; letter-spacing: .12em; line-height: 1; }
 .colophon a { color: inherit; text-decoration: none; }
 
-.download { text-align: center; font-size: 13px; color: var(--ink-muted); }
+.download { margin: 0; padding: 8px 16px 48px; text-align: center; font-size: 13px; color: var(--ink-muted); }
 .download a { color: var(--sea); }
 
-/* 画面幅に余裕があるときは本文を縦書きにする */
-@media screen and (min-width: 600px) {
-  .vert { writing-mode: vertical-rl; height: 746px; padding: 56px 44px; }
-  .quote .vert { display: flex; flex-direction: column; justify-content: flex-start; }
-}
-
-/* ───────── 印刷: A5 縦・右綴じ ───────── */
-@page { size: 148mm 210mm; margin: 0; }
 @media print {
   html, body { background: #fff; }
-  .zine { display: block; padding: 0; }
-  .download { display: none; }
-  .page {
-    width: var(--page-w); height: var(--page-h); max-width: none;
-    box-shadow: none; background: #fff;
-    break-after: page; page-break-after: always;
-  }
+  .zine { display: block; padding: 0; zoom: 1 !important; }
+  .page { box-shadow: none; break-after: page; }
   .page:last-child { break-after: auto; }
-  .folio { bottom: 7mm; font-size: 7pt; }
-
-  .vert { writing-mode: vertical-rl; height: 100%; padding: 18mm 14mm 20mm; font-size: 9.5pt; line-height: 1.95; }
-  .quote .vert { padding: 22mm 18mm 24mm; }
-  .quote blockquote { font-size: 10pt; line-height: 2.05; }
-  .quote .num { font-size: 8pt; }
-  .quote cite { font-size: 7.5pt; }
-
-  .page.photo-full { aspect-ratio: auto; height: var(--page-h); }
-
-  .cover .cover-photo { aspect-ratio: auto; height: 132mm; }
-  .cover .cover-text { height: 78mm; padding: 12mm 12mm 14mm; }
-  .cover h1 { font-size: 46pt; }
-  .cover .ruby { font-size: 8pt; }
-  .cover .meta { font-size: 8pt; }
-  .cover .meta strong { font-size: 10pt; }
-
-  .lead { display: flex; flex-direction: column; }
-  .lead .lead-photo { aspect-ratio: auto; height: 96mm; flex: none; }
-  .lead .vert { flex: 1; height: auto; min-height: 0; padding: 12mm 14mm 16mm; }
-
-  .album { padding: 14mm 12mm 16mm; }
-  .album h2, .access h2 { font-size: 9pt; margin-bottom: 5mm; }
-  .album .grid { gap: 2mm; }
-  .album .grid div { aspect-ratio: auto; height: 42mm; }
-  .album .grid .wide { aspect-ratio: auto; height: 100mm; }
-
-  .access { padding: 14mm 12mm 16mm; gap: 6mm; }
-  .access dl { font-size: 8pt; gap: 1.6mm 5mm; }
-  .access .note { font-size: 6.5pt; }
-  .access .back-photo { aspect-ratio: auto; height: 62mm; }
-  .colophon { margin-top: auto; font-size: 7.5pt; padding-top: 4mm; }
-  .colophon .title { font-size: 15pt; }
+  .download { display: none; }
 }
 </style>
 </head>
@@ -298,5 +252,12 @@ p { margin: 0; }
 
 </main>
 <p class="download"><a href="kamishima-a5.pdf">A5 PDF</a> ・ <a href="kamishima-booklet-a4.pdf">印刷用（A4 両面・中綴じ）</a></p>
+<script>
+const zine = document.querySelector(".zine");
+const pageWidth = document.querySelector(".page").offsetWidth;
+function fit() { zine.style.zoom = Math.min(1.5, (document.documentElement.clientWidth - 32) / pageWidth); }
+fit();
+addEventListener("resize", fit);
+</script>
 </body>
 </html>
