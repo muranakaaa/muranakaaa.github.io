@@ -129,7 +129,6 @@ def main() -> None:
             about_note(site),
             intro_paragraphs(site),
             roles_line(site["roles_lead"], tight=True),
-            roles_line(site["roles"], tight=True),
             roles_line(site["roles_tail"]),
             lists(site["likes"]),
             block("好きな音楽", music(site)),
