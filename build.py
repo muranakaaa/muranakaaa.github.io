@@ -128,6 +128,7 @@ def main() -> None:
             roles_line(site["roles"]),
             lists(site["likes"]),
             block("好きな音楽", music(site)),
+            block("zine", "".join(link_card(z["url"], z["title"], z["image"], z["description"]) for z in site["zines"])),
             block("ほしいもの", link_card(site["wishlist_url"], site["wishlist_title"], site["wishlist_image"])),
             block(POSTS_TITLE, post_list(posts, site["handle"])),
         ]

@@ -53,6 +53,14 @@
   "playlist_description": "Playlist · ayatakaa_chan · 42 items",
   "playlist_image": "images/spotify-playlist.jpg",
   "music_note": "70〜80年代のファンク＆ソウルが好きです。",
+  "zines": [
+    {
+      "title": "歌島",
+      "url": "https://muranakaaa.github.io/zine/kamishima/",
+      "image": "images/zine-kamishima.jpg",
+      "description": "三島由紀夫『潮騒』の舞台、三重県鳥羽市神島。読書の記録と2021年夏の写真。"
+    }
+  ],
   "wishlist_url": "https://www.amazon.jp/hz/wishlist/ls/2XVETO9L9BGLQ",
   "wishlist_title": "Amazon ほしい物リスト",
   "wishlist_image": "images/amazon-logo.png",
